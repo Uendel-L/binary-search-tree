@@ -49,18 +49,6 @@ class Arvore_binaria:
             self.em_ordem(no.dir)
         print(no, end=' ')
 
-    def minimo(self):
-        aux = self.raiz
-        while aux.esq:
-            aux = aux.esq
-        return aux.dado
-
-    def maximo(self):
-        aux = self.raiz
-        while aux.dir:
-            aux = aux.dir
-        return aux.dado
-
 class Arvore_busca(Arvore_binaria):
     
     def inserir(self, valor):
@@ -89,5 +77,17 @@ class Arvore_busca(Arvore_binaria):
         if valor < no.dado:
             return self.busca(valor, no.esq)
         return self.busca(valor, no.dir)
+    
+    def minimo(self):
+        aux = self.raiz
+        while aux.esq:
+            aux = aux.esq
+        return aux.dado
+
+    def maximo(self):
+        aux = self.raiz
+        while aux.dir:
+            aux = aux.dir
+        return aux.dado
 
 
