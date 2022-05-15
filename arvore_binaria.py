@@ -4,27 +4,34 @@ from pip import main
 class No:
     def __init__(self, dado):
         self.dado = dado
-        self.dir = None
         self.esq = None
+        self.dir = None
+    
+    def __str__(self):
+        return str(self.dado)
 
 class Arvore_binaria:
-    def __init__(self, dado, no=None):
+    def __init__(self, dado=None, no=None):
         if no:
             self.raiz = no
-        else:
+        elif dado:
             no = No(dado)
             self.raiz = no
+        else:
+            self.raiz = None
     
-    def em_ordem(self):
-        no = self.raiz
+    def em_ordem(self, no=None):
+        if no is None:
+            no = self.raiz
         if no.esq:
             self.em_ordem(no.esq)
         print(no, end=' ')
         if no.dir:
             self.em_ordem(no.dir)
     
-    def pre_ordem(self):
-        no = self.raiz
+    def pre_ordem(self, no=None):
+        if no is None:
+            no = self.raiz
         print(no, end=' ')
         if no.esq:
             self.em_ordem(no.esq)
@@ -32,7 +39,8 @@ class Arvore_binaria:
             self.em_ordem(no.dir)
 
     def pos_ordem(self):
-        no = self.raiz
+        if no is None:
+            no = self.raiz
         if no.esq:
             self.em_ordem(no.esq)
         if no.dir:
@@ -56,15 +64,15 @@ class Arvore_busca(Arvore_binaria):
         else:
             pai.dir = No(valor)
 
-    def busca(self, valor, no):
+    def busca(self, valor, no="raiz"):
         if no == "raiz":
             no = self.raiz
         if no is None:
             return no
-        if no.data == valor:
+        if no.dado == valor:
             return Arvore_busca(no)
-        if valor < no.data:
-            return self._busca(valor, no.esq)
-        return self._busca(valor, no.dir)
+        if valor < no.dado:
+            return self.busca(valor, no.esq)
+        return self.busca(valor, no.dir)
 
 
