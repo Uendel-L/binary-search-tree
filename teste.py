@@ -16,4 +16,7 @@ for y in encontrar:
     if v is None:
         print(f'{y} Não foi encontrado na árvore')
     else:
-        print(f'{y} Encontrado')
+        print(f'{v.raiz.dado} Encontrado')
+
+print(ab.minimo())
+print(ab.maximo())

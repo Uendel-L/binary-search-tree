@@ -2,6 +2,7 @@ from pip import main
 
 
 class No:
+    
     def __init__(self, dado):
         self.dado = dado
         self.esq = None
@@ -11,6 +12,7 @@ class No:
         return str(self.dado)
 
 class Arvore_binaria:
+    
     def __init__(self, dado=None, no=None):
         if no:
             self.raiz = no
@@ -47,7 +49,20 @@ class Arvore_binaria:
             self.em_ordem(no.dir)
         print(no, end=' ')
 
+    def minimo(self):
+        aux = self.raiz
+        while aux.esq:
+            aux = aux.esq
+        return aux.dado
+
+    def maximo(self):
+        aux = self.raiz
+        while aux.dir:
+            aux = aux.dir
+        return aux.dado
+
 class Arvore_busca(Arvore_binaria):
+    
     def inserir(self, valor):
         pai = None
         x = self.raiz
