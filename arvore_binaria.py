@@ -90,4 +90,27 @@ class Arvore_busca(Arvore_binaria):
             aux = aux.dir
         return aux.dado
 
+    def total_nos(self, no="raiz"):
+        if no == "raiz":
+            no = self.raiz
+        if no is None:
+            return 0
+        else:
+            return 1 + self.total_nos(no.esq) + self.total_nos(no.dir)
+
+    def total_folhas(self, no="raiz"):
+        if no == "raiz":
+            no = self.raiz
+        if no is None:
+            return 0
+        elif no.esq==None and no.dir==None:
+            return 1
+        else:
+            return self.total_folhas(no.esq) + self.total_folhas(no.dir)
+
+        
+
+    
+
+
 

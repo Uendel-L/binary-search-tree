@@ -20,3 +20,6 @@ for y in encontrar:
 
 print(ab.minimo())
 print(ab.maximo())
+
+print(ab.total_nos())
+print(ab.total_folhas())
