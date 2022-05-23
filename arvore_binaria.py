@@ -78,14 +78,16 @@ class Arvore_busca(Arvore_binaria):
             return self.busca(valor, no.esq)
         return self.busca(valor, no.dir)
     
-    def minimo(self):
-        aux = self.raiz
+    def minimo(self, aux="raiz"):
+        if aux == "raiz":
+            aux = self.raiz
         while aux.esq:
             aux = aux.esq
         return aux.dado
 
-    def maximo(self):
-        aux = self.raiz
+    def maximo(self, aux="raiz"):
+        if aux == "raiz":
+            aux = self.raiz
         while aux.dir:
             aux = aux.dir
         return aux.dado
@@ -108,9 +110,35 @@ class Arvore_busca(Arvore_binaria):
         else:
             return self.total_folhas(no.esq) + self.total_folhas(no.dir)
 
-        
+    def altura(self, no=None):
+        if no is None:
+            no = self.raiz
+        esquerda = 0
+        direita = 0
+        if no.esq:
+            esquerda = self.altura(no.esq)
+        if no.dir:
+            direita = self.altura(no.dir)
+        if esquerda > direita:
+            return esquerda + 1
+        return direita + 1
 
-    
-
-
-
+    def remover(self, valor, no="raiz"):
+        if no == "raiz":
+            no = self.raiz
+        if no is None:
+            return no
+        if valor < no.dado:
+            no.esq = self.remover(valor, no.esq)
+        elif valor > no.dado:
+            no.dir = self.remover(valor, no.dir)
+        else:
+            if no.esq is None:
+                return no.dir
+            elif no.dir is None:
+                return no.esq
+            else:
+                substituto = self.minimo(no.dir)
+                no.dado = substituto
+                no.dir = self.remover(substituto, no.dir)
+        return no

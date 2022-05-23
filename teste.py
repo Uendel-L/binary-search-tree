@@ -1,8 +1,8 @@
 import random
-from arvore_binaria import Arvore_busca
+from arvore_binaria import Arvore_busca, No
 
-random.seed(77)
-lista = random.sample(range(1, 1000), 42)
+random.seed(25)
+lista = random.sample(range(1, 1000), 50)
 ab = Arvore_busca()
 
 for i in lista:
@@ -10,7 +10,7 @@ for i in lista:
 
 ab.em_ordem()
 print('')
-encontrar = [1, 3, 981, 510, 1000]
+encontrar = [1, 220, 36, 997, 880, 800]
 for y in encontrar:
     v = ab.busca(y)
     if v is None:
@@ -18,8 +18,13 @@ for y in encontrar:
     else:
         print(f'{v.raiz.dado} Encontrado')
 
-print(ab.minimo())
-print(ab.maximo())
+print(f'O nó de menor valor é: {ab.minimo()}')
+print(f'O nó de maior valor é: {ab.maximo()}')
 
-print(ab.total_nos())
-print(ab.total_folhas())
+print(f'O número total de nós é: {ab.total_nos()}')
+print(f'O número total de folhas é: {ab.total_folhas()}')
+
+print(f'A altura da árvore é de {ab.altura()} nós')
+
+ab.remover(220)
+ab.em_ordem()
