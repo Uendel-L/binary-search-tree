@@ -8,8 +8,13 @@ ab = Arvore_busca()
 for i in lista:
     ab.inserir(i)
 
+print('Exibindo árvore em Ordem')
 ab.em_ordem()
-print('')
+print('Exibindo árvore em Pré Ordem')
+ab.pre_ordem()
+print('Exibindo árvore em Pós Ordem')
+ab.pos_ordem()
+print('Efetuando Busca')
 encontrar = [1, 220, 36, 997, 880, 800]
 for y in encontrar:
     v = ab.busca(y)
@@ -26,5 +31,12 @@ print(f'O número total de folhas é: {ab.total_folhas()}')
 
 print(f'A altura da árvore é de {ab.altura()} nós')
 
-ab.remover(220)
+x = 220
+print('Removendo valor determinado...')
+ab.remover(x)
+print('Exibindo árvore em Ordem')
 ab.em_ordem()
+print('Exibindo árvore em Pré Ordem')
+ab.pre_ordem()
+print('Exibindo árvore em Pós Ordem')
+ab.pos_ordem()
