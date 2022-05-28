@@ -40,7 +40,7 @@ class Arvore_binaria:
         if no.dir:
             self.em_ordem(no.dir)
 
-    def pos_ordem(self):
+    def pos_ordem(self, no=None):
         if no is None:
             no = self.raiz
         if no.esq:
@@ -110,18 +110,26 @@ class Arvore_busca(Arvore_binaria):
         else:
             return self.total_folhas(no.esq) + self.total_folhas(no.dir)
 
-    def altura(self, no=None):
-        if no is None:
-            no = self.raiz
+    def altura(self, no=None, flag=True):
+        if flag:
+            if no:
+                no = self.busca(no)
+                if no is None:
+                    return no
+                no = no.raiz
+            else:
+                no = self.raiz
+            flag = False
         esquerda = 0
         direita = 0
-        if no.esq:
-            esquerda = self.altura(no.esq)
-        if no.dir:
-            direita = self.altura(no.dir)
-        if esquerda > direita:
-            return esquerda + 1
-        return direita + 1
+        if no is None:
+            return -1
+        else:
+            esquerda = self.altura(no.esq, flag=False)
+            direita = self.altura(no.dir, flag=False)
+            if esquerda > direita:
+                return esquerda + 1
+            return direita + 1
 
     def remover(self, valor, no="raiz"):
         if no == "raiz":
