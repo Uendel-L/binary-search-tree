@@ -1,5 +1,4 @@
 import random
-from arvore_binaria import Arvore_busca, No
 
 #random.seed(25)
 lista = [1,2,3] #random.sample(range(1, 1000), 50)
@@ -27,7 +26,8 @@ print(f'O nó de menor valor é: {ab.minimo()}')
 print(f'O nó de maior valor é: {ab.maximo()}')
 
 print(f'O número total de nós é: {ab.total_nos()}')
-print(f'O número total de folhas é: {ab.total_folhas()}')
+print(f'As folhas da Arvore são: ', end='')
+print(f'\nO número total de folhas é: {ab.total_folhas()}')
 
 valor = 3
 altura = ab.altura(valor)
