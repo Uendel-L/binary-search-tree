@@ -103,10 +103,22 @@ class Arvore_busca(Arvore_binaria):
         if no is None:
             return 0
         elif no.esq==None and no.dir==None:
-            print(no.dado, end=' ')
             return 1
         else:
             return self.total_folhas(no.esq) + self.total_folhas(no.dir)
+
+    def folhas(self, no="raiz"):
+        if no == "raiz":
+            no = self.raiz
+        if no is None:
+            return
+        if no.esq==None and no.dir==None:
+            print(no.dado, end=' ')
+            return
+        if no.esq:
+            self.folhas(no.esq)
+        if no.dir:
+            self.folhas(no.dir)
 
     def altura(self, no=None, flag=True):
         if flag:
