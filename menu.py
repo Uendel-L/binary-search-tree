@@ -4,10 +4,20 @@ from arvore_binaria import Arvore_busca
 ab = Arvore_busca()
 opcao = 10
 
+def try_except(string):
+    try: 
+        opcao = int(input(string))
+    except ValueError as err: 
+        print('Apenas número são válidos!')
+    else: 
+        return opcao
+    return try_except(string)
+    #"Digite a opção que deseja: "
+
 print('---------------------------------------')
 print('Bem vindo ao gerador de Árvore Binária!')
 print('---------------------------------------')
-while opcao!=0:
+while True:
     print('''Por favor, Digite uma opção para prosseguirmos:\n
     Para INSERIR, digite 1\n
     Para VISUALIZAR A Árvore, digite 2\n
@@ -20,15 +30,10 @@ while opcao!=0:
     Para REMOVER UM NÓ, digite 9\n
     Para SAIR, digite 0''')
     print('---------------------------------------')
-    opcao = input('Faça sua escolha: ')
-
-    while not opcao.isnumeric() or opcao < 0 or opcao > 9:
-        opcao = input('Mas eu num te passei as opções? Escolhe uma válida irmão!\nDigite uma opção válida: ')
+    opcao = try_except('Digite a opção que deseja: ')
 
     if opcao == 1:
-        i = input('Digite o valor que deseja INSERIR: ')
-        while not i.isnumeric():
-            i = input('Pelo amor de Deus, digita um número meu filho: ')
+        i = try_except('Digite o valor que deseja INSERIR: ')
         ab.inserir(i)
         print('Valor inserido com sucesso!')
 
@@ -41,9 +46,7 @@ while opcao!=0:
         ab.pos_ordem()
 
     elif opcao == 3:
-        i = input('\nDigite o valor que deseja BUSCAR: ')
-        while not i.isnumeric():
-            i = input('Pelo amor de Deus, digita um número meu filho: ')
+        i = try_except('\nDigite o valor que deseja BUSCAR: ')
         print(f'Efetuando Busca do valor {i}...')
         v = ab.busca(i)
         if v is None:
@@ -64,9 +67,7 @@ while opcao!=0:
         print(f'\nO número total de folhas é: {ab.total_folhas()}')
 
     elif opcao == 7:
-        i = input('\nDigite o valor que deseja verificar a ALTURA: ')
-        while not i.isnumeric():
-            i = input('Pelo amor de Deus, digita um número meu filho: ')
+        i = try_except('\nDigite o valor que deseja verificar a ALTURA: ')
         altura = ab.altura(i)
         if altura is None:
             print(f'O valor {i} não está contido na Árvore')
@@ -74,9 +75,7 @@ while opcao!=0:
             print(f'A altura do nó é: {altura}')
 
     elif opcao == 8:
-        i = input('\nDigite o valor que deseja verificar o NÍVEL: ')
-        while not i.isnumeric():
-            i = input('Pelo amor de Deus, digita um número meu filho: ')
+        i = try_except('\nDigite o valor que deseja verificar o NÍVEL: ')
         nivel = ab.nivel(i)
         if nivel is None:
             print(f'O valor {i} não está contido na Árvore')
@@ -84,11 +83,11 @@ while opcao!=0:
             print(f'O nível do nó é: {nivel}')
 
     elif opcao == 9:
-        i = input('\nDigite o valor que deseja REMOVER: ')
-        while not i.isnumeric():
-            i = input('Pelo amor de Deus, digita um número meu filho: ')
-        else:
-            print(f'O valor {i} foi removido da Árvore.\nCaso deseje visualizar a Árvore, escolha a opção 2!')
+        i = try_except('\nDigite o valor que deseja REMOVER: ')
+        print(f'O valor {i} foi removido da Árvore.\nCaso deseje visualizar a Árvore, escolha a opção 2!')
+    
+    elif opcao==0:
+        print('O programa foi encerrado, fllws...')
 
     else:
-        print('O programa foi encerrado, fllws...')
+        opcao = input('Mas eu num te passei as opções? Escolhe uma válida irmão!\nDigite uma opção válida: ')
