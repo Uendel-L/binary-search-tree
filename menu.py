@@ -8,7 +8,7 @@ def try_except(string):
     try: 
         opcao = int(input(string))
     except ValueError as err: 
-        print('Apenas número são válidos!')
+        print('Apenas números são válidos!')
     else: 
         return opcao
     return try_except(string)
@@ -38,12 +38,18 @@ while True:
         print('Valor inserido com sucesso!')
 
     elif opcao == 2:
-        print('Exibindo árvore Em Ordem')
-        ab.em_ordem()
-        print('\nExibindo árvore em Pré Ordem')
-        ab.pre_ordem()
-        print('\nExibindo árvore em Pós Ordem\n')
-        ab.pos_ordem()
+        if ab.raiz==None:
+            print('A árvore está vazia.')
+        else:
+            print('\nExibindo a raíz da árvore')
+            print(ab.raiz)
+            print('Exibindo árvore Em Ordem')
+            ab.em_ordem()
+            print('\nExibindo árvore em Pré Ordem')
+            ab.pre_ordem()
+            print('\nExibindo árvore em Pós Ordem')
+            ab.pos_ordem()
+            print('')
 
     elif opcao == 3:
         i = try_except('\nDigite o valor que deseja BUSCAR: ')
@@ -55,16 +61,25 @@ while True:
             print(f'{v.raiz.dado} Encontrado')
 
     elif opcao == 4:
-        print(f'O nó de menor valor é: {ab.minimo()}')
-        print(f'O nó de maior valor é: {ab.maximo()}')
+        if ab.raiz==None:
+            print('A árvore está vazia.')
+        else:
+            print(f'O nó de menor valor é: {ab.minimo()}')
+            print(f'O nó de maior valor é: {ab.maximo()}')
 
     elif opcao == 5:
-        print(f'O número total de nós é: {ab.total_nos()}')
+        if ab.raiz==None:
+            print('A árvore está vazia.')
+        else:
+            print(f'O número total de nós é: {ab.total_nos()}')
 
     elif opcao == 6:
-        print(f'As folhas da Arvore são: ', end='')
-        {ab.folhas()}
-        print(f'\nO número total de folhas é: {ab.total_folhas()}')
+        if ab.raiz==None:
+            print('A árvore está vazia.')
+        else:
+            print(f'As folhas da Arvore são: ', end='')
+            {ab.folhas()}
+            print(f'\nO número total de folhas é: {ab.total_folhas()}')
 
     elif opcao == 7:
         i = try_except('\nDigite o valor que deseja verificar a ALTURA: ')
@@ -84,10 +99,13 @@ while True:
 
     elif opcao == 9:
         i = try_except('\nDigite o valor que deseja REMOVER: ')
+        print(i)
+        ab.remover(i)
         print(f'O valor {i} foi removido da Árvore.\nCaso deseje visualizar a Árvore, escolha a opção 2!')
     
     elif opcao==0:
         print('O programa foi encerrado, fllws...')
+        break
 
     else:
         opcao = input('Mas eu num te passei as opções? Escolhe uma válida irmão!\nDigite uma opção válida: ')

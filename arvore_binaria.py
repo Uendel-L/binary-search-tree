@@ -163,11 +163,17 @@ class Arvore_busca(Arvore_binaria):
             no.dir = self.remover(valor, no.dir)
         else:
             if no.esq is None:
+                if valor == self.raiz.dado:
+                    self.raiz = no.dir
                 return no.dir
             elif no.dir is None:
+                if valor == self.raiz.dado:
+                    self.raiz = no.esq
                 return no.esq
             else:
                 substituto = self.minimo(no.dir)
                 no.dado = substituto
+                if valor == self.raiz.dado:
+                    self.raiz = substituto
                 no.dir = self.remover(substituto, no.dir)
         return no
